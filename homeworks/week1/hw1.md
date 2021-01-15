@@ -4,8 +4,8 @@
 
 1.新開一個 branch：`git branch hw1`
 2.切換到這個分支 : `git checkout hw1`
-git add
-3.寫完這次的作業之後儲存並提交 `commit hw1作業完成`
+編寫完作業後將所有改動的檔案加入 staged 區 : `git add`
+3.寫完這次的作業之後儲存並提交 `git commit 'hw1作業完成'`
 4.推到遠端 : `Git push origin hw1` 
 
 
