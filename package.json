@@ -28,7 +28,7 @@
   },
   "homepage": "https://github.com/Lidemy/mentor-program-4th#readme",
   "dependencies": {
-    
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "eslint": "^5.15.1",
