@@ -7,7 +7,7 @@
 
 const request = require('request');
 const process = require('process');
-const API_url = 'https://lidemy-book-store.herokuapp.com';
+const API_URL = 'https://lidemy-book-store.herokuapp.com';
 const action = process.argv[2] //抓取動作
 const variable =  process.argv[3]
 
@@ -18,16 +18,16 @@ switch (action) {
 		list();
 		break;
 	case 'read':
-		readbooks();
+		readBooks();
 		break;
 	case 'delete':
-		deletebook();
+		deleteBook();
 		break;
 	case 'create':
-		addbook();
+		addBook();
 		break;
 	case 'update':
-		updatebook();
+		updateBook();
 		break;
   default:
 	//當 expression 的值都不符合上述條件
@@ -37,7 +37,7 @@ switch (action) {
 
 // 印出前二十本書的 id 與書名
 function list(){
-	request(`${API_url}`+ "/books?_limit=20",
+	request(`${API_URL}`+ "/books?_limit=20",
 	function(err, res, body){
 		if (err) {
 			return console.log('抓取失敗', err);
@@ -51,12 +51,12 @@ function list(){
 }
 
 // node hw2.js read 1 // 輸出 id 為 1 的書籍
-function readbooks(){
+function readBooks(){
 	request(`https://lidemy-book-store.herokuapp.com/books/`+ variable,
 	function(err, res, body){
 	    let data = JSON.parse(body);
 		if (err) {
-			return console.log(err);
+		return console.log(err);
 		}	
 			console.log(data);     
 	}) 
@@ -65,7 +65,7 @@ function readbooks(){
 
 
 // node hw2.js delete 1 // 刪除 id 為 1 的書籍
-function deletebook(){
+function deleteBook(){
 	request.delete(
 		`https://lidemy-book-store.herokuapp.com/books/`+variable,
 		function(err, res, body){	
@@ -80,7 +80,7 @@ function deletebook(){
 
 // 新增一本名為 I love coding 的書
 
-function addbook(){
+function addBook(){
 	request.post(
 	{
 		url:`https://lidemy-book-store.herokuapp.com/books/`+variable,
@@ -101,7 +101,7 @@ function addbook(){
 // node hw2.js update 1 "new name" // 更新 id 為 1 的書名為 new name  
 // /books/:id
 //更新有五個位置
-function updatebook(){
+function updateBook(){
 	request.patch(
 		{
 			url:`https://lidemy-book-store.herokuapp.com/books/`+ process.argv[3],

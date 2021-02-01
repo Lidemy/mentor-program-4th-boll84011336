@@ -4,11 +4,11 @@ const process = require('process');
 const { argv } = require('process');
 
 API_url ='https://restcountries.eu/rest/v2'
-Country_Name = process.argv[2]
+countryName = process.argv[2]
 
 
 request(
-	`https://restcountries.eu/rest/v2/name/${Country_Name}`,
+	`https://restcountries.eu/rest/v2/name/${countryName}`,
 		function(err,res,body){
 			if (err) {
 				return console.log('抓取失敗', err);
