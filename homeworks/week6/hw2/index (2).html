@@ -1,0 +1,174 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+
+    <title>新拖延運動報名表單</title>
+    <style>
+        .body {
+            width: 1920px;
+            height: 1340px;
+            font-family: MicrosoftJhengHei;
+        }
+
+
+
+        .wrapper {
+            max-width: 645px;
+            height: 1085px;
+            background: white;
+            margin: 10% auto;
+            box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+            border-top: solid 8px #fad312;
+            padding: 64px 32px;
+          
+        }
+        .form__title {
+            width: 385px;
+            height: 32px;
+            font-size: 36px;
+            font-weight: bold;
+          
+        }
+
+        .form__desc {
+            padding: 6px;
+            height: 13px;
+            font-family: MicrosoftJhengHei;
+            font-size: 14px;
+        }
+
+        .must {
+            width: 42px;
+            height: 15px;
+            font-family: MicrosoftJhengHei;
+            font-size: 16px;
+            color: #e74149;
+            padding: 10px;
+            
+        }
+
+        .form__content__title {
+            padding: 10px;
+            font-family: MicrosoftJhengHei;
+            font-size: 20px;
+            margin-top: 38px;
+        }
+
+        .form__content__title:after {
+            content: '*';
+            color: #e74149;
+        }
+
+        .form__desc__input {
+            padding: 8px;
+            display: block;
+            width: 287px;
+            height: 23px;
+        }
+
+        .form__content__other {
+            font-size: 20px;
+            padding: 4px;
+        }
+
+        .suggest {
+            padding: 8px 6px;
+            margin: 0px;
+            margin-bottom:4px;
+            font-size: 14px;
+        }
+
+        .form__submit {
+            padding: 8px 6px;
+            margin-left: 5px;
+            margin-top:60px;
+            width: 92px;
+            height: 40px;
+            border-radius: 3px;
+            background-color: #fad312;
+        }
+
+        footer {
+            background: black;
+            color: #999999;
+            font-size: 13px;
+            text-align: center;
+            padding: 24px 12px
+        }
+		
+		 /* 手機板768大小 */
+		@media(max-width: 768px){
+			.form__desc__input {
+				 margin-top:5px;
+			}
+		}
+    </style>
+</head>
+
+<body>
+     <div class="wrapper">
+         <form class="apply-form">
+             <h1 class="form__title">新拖延運動報名表單</h1>
+
+             <div class="form__desc">活動日期：2020/12/10 ~ 2020/12/11</div>
+             <div class="form__desc">活動地點：台北市大安區新生南路二段1號</div>
+             <div class="must">*必填</div>
+
+             <div class="form__content">
+                 <div class="form__content__title">暱稱</div>
+                 <div class="form__desc__input">
+                     <input name="nickname" type="text" />
+                 </div>
+             </div>
+
+             <div class="form__content">
+                 <div class="form__content__title">電子郵件</div>
+                 <div class="form__desc__input">
+                     <input name="email" type="text" />
+                 </div>
+             </div>
+
+             <div class="form__content">
+                 <div class="form__content__title">手機號碼</div>
+                 <div class="form__desc__input">
+                     <input name="phone" type="text" />
+                 </div>
+             </div>
+
+             <div class="form__content">
+                 <div class="form__content__title">報名類型</div>
+                 <div class="form__desc__input">
+                     <input name="entry_type" type="radio" id="Implement" /><label for="Implement">躺在床上用想像力實作</label><br />
+                     <input name="entry_type" type="radio" id="Ready-made" /><label for="Ready-made">趴在地上滑手機找現成的</label>
+                 </div>
+             </div>
+
+             <div class="form__content">
+                 <div class="form__content__title">怎麼知道這個活動的?</div>
+                 <div class="form__desc__input">
+                     <input name="question" type="text" />
+                 </div>
+             </div>
+
+             <div class="form__content">
+                 <div class="form__content__other">其他</div>
+                 <p class="suggest"> 對活動的一些建議 </p>
+                 <div class="form__desc__input">
+                     <input name="other" type="text" />
+                 </div>
+             </div>
+             <input class="form__submit" type="submit" />
+             <div class="form__desc">
+                 請勿透過表單送出您的密碼。
+             </div>
+
+         </form>
+        
+     </div>
+     <footer>© 2020 © Copyright. All rights Reserved.</footer>
+</body>
+</html>
