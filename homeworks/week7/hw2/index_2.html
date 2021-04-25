@@ -69,6 +69,14 @@
         padding: 0px 12px;
       }
 
+      /* .wrapper__content{
+        max-width: 645px;          
+        background: white;           
+        margin: 10% auto;
+        box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+        border-top: solid 8px #fad312;        
+        padding: 64px 32px;
+      } */
 
       h2 {
         margin: 0;
@@ -87,54 +95,54 @@
         margin-bottom: 36px;
       }
 
-      .section__desc {
-        font-size: 16px;
-        line-height: 2em;
-        margin: 0px 0px 68px 0px;
+      .box {
+        padding-bottom: 30px;
+     
       }
 
-      .faq-item--hide{
-        height: 15px;
-      }
-
-      .faq-block {
-        max-width: 768px;
-        margin: 0 auto;
-      }
-
-      .faq-item {
-        display: flex;
-        text-align: left;
-        padding-bottom: 24px;
-        border-bottom: solid 1px #a6e2c0;
-        overflow: hidden;
-        cursor: pointer;
-      }
-
-       /* 不是第一個 就margin-top:24px */
-      .faq-item:not(:first-child) {
-        margin-top:24px
-      }
-
-      .faq-item__number{
-        color: #70b282;
-        font-size: 24px;
-        margin-right: 16px;
-        line-height: 24px;
-      }
-
-      .faq-item__content h2{
-        font-size: 18px;
-        margin: 0;
-        font-weight: normal;
-        line-height: 24px;
-      }
-
-      .faq-item__content p {
-        font-size: 16px;
+      .faq {
+        max-width: 645px;
+        margin: 0% 28%; 
+        padding-right: 35%;
+       
        
       }
-    
+
+      .hide__answer {
+        visibility:hidden;
+        /* overflow: hidden; */
+      }
+
+      .number {
+        color: #70b282;
+      }
+
+      .answer {    
+        max-width: 645px;
+        margin: 0% 28%;         
+        display: block;
+        text-align: left;
+        padding-top: 15px;
+       
+        
+      }
+
+      .answer.solid {
+        padding-bottom: 28px;
+        border-bottom: solid 3px #a6e2c0;
+      }
+
+
+      .botton {
+        padding: 60px 80px;
+        font-size: 36px;
+        color: #3e613d; /*字體顏色*/
+        display: inline-block;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: transform 0.1s;
+      }
+
 
       footer {
         margin-top: 48px;
@@ -255,65 +263,31 @@
     </nav>
    
 
-    <div class="wrapper">
+    <div class="wrapper__content">
         <section class="section">
             <h2 class="section__title">
               FAQ - 常見問題
             </h2>
-
             <div class="faq-block">
-              <div class="faq-item faq-item--hide">
-                <div class="faq-item__number">
-                  Q1:
-                </div>
-                <div class="faq-item__content">
-                  <h2>如何辦理退貨?</h2>
-                  <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
-                </div>
-              </div>
-              <div class="faq-item faq-item--hide">
-                <div class="faq-item__number">
-                  Q2:
-                </div>
-                <div class="faq-item__content">
-                  <h2>如何辦理退貨?</h2>
-                  <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
+              <div class="box">
+                <span class="faq">
+                  <span class="number">Q1:</span>&nbsp&nbsp如何辦理退貨         
+                  </br>               
+                </span>
+                <div class="answer hide__answer">                                
+                    <p>線上申辦會員卡接受國泰世華銀行COSTCO聯名卡、國泰世華Visa金融卡以及其他信用卡付款。
+                      線上申辦會員卡接受國泰世華銀行COSTCO聯名卡、國泰世華Visa金融卡以及其他信用卡付款。線上申辦會員卡接受國泰世華銀行COSTCO聯名卡、國泰世華Visa金融卡以及其他信用卡付款。</p>                                        
                 </div>
               </div>
-              <div class="faq-item faq-item--hide">
-                <div class="faq-item__number">
-                  Q3:
-                </div>
-                <div class="faq-item__content">
-                  <h2>如何辦理退貨?</h2>
-                  <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
-                </div>
-              </div>
-              <div class="faq-item faq-item--hide">
-                <div class="faq-item__number">
-                  Q4:
-                </div>
-                <div class="faq-item__content">
-                  <h2>如何辦理退貨?</h2>
-                  <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
-                </div>
-              </div>
-              <div class="faq-item faq-item--hide">
-                <div class="faq-item__number">
-                  Q5:
-                </div>
-                <div class="faq-item__content">
-                  <h2>如何辦理退貨?</h2>
-                  <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
-                </div>
-              </div>
-            </div>
-
-
-        </section>
-       
+             
+            </div>            
+        </section>    
     </div>
 
+
+     
+
+     
       <footer>
         <div class="footer__top">
           <div class="wrapper">
@@ -331,15 +305,38 @@
         </div>
         <div class="footer__bottom">Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有</div>
       </footer>
-      <script>
-          document.querySelector('.faq-block')
-            .addEventListener('click',function(e){
-              const element = e.target.closest('.faq-item') //去找離我點到的最近的.faq-item
-              if(element){
-                element.classList.toggle('faq-item--hide')
-              }
-         
-          })
-      </script>
+    <script>
+      const FAQ = document.querySelector('.faq-block')
+      FAQ.addEventListener('click',function(e){
+      let isclick = false
+
+ 
+      console.log(e.target.nodeName)
+      if(e.target.nodeName.toLowerCase() == span){
+       
+        
+          e.target.closest(".answer").classList.toggle('hide__answer')
+        
+      }
+     
+      
+      // for(let f of faq){
+      //   e.target.f.onmousedown
+      //   if(e.target.ans){      
+      //   e.target.ans.classList.remove('hide__answer') 
+      //   }else{
+      //   e.target.ans.classList.add('hide__answer') 
+      //   }
+        
+      // }
+     
+        
+      //e.target.closest("div").classList.toggle('hide__answer')
+      // classList.toggle('hide__answer')
+        // let isClosed = true
+        //e.target.closest("box")
+      })
+      
+    </script>
 </body>
 </html>

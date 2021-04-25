@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>todo list</title>
+  <!-- 做RWD的時候用的meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 把一些地方初始化 -->
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+
+  <style>
+	  .wrapper {
+		max-width: 700px;
+		border: solid 1px black;
+		margin: 0 auto;
+		padding: 32px;
+	  }
+
+	  .todo {
+		display: flex;
+		align-items: center;
+		margin-top: 12px;
+		padding: 12px;
+	  }
+
+	  .todo:hover {
+		background: rgba(0,0,0,0.2);
+	  }
+
+	  .todo__title {
+		  flex:1
+	  }
+
+	  .todo__check {
+		width: 20px;
+		height: 20px;
+	  }
+
+	  .input__todo {
+		justify-content: space-between;
+	  }
+
+	  /*如果*/
+	  .todo.done .todo__title {
+		text-decoration: line-through;
+	  }
+
+  </style>
+
+</head>
+
+<body>
+	<div class="wrapper">
+	    <input class="input__todo" type="text"/>&nbsp;&nbsp;<button class="btn-new">新增</button>
+		<div class="todos">
+			<div class="todo">
+				<input class="todo__check" type="checkbox"/>
+				<div class="todo__title">fix bug</div>
+				<button class="btn-delete">刪除</button>
+			</div>
+			<div class="todo">
+				<input class="todo__check" type="checkbox"/>
+				<div class="todo__title">fix bug2</div>
+				<button class="btn-delete">刪除</button>
+			</div>
+		</div>
+	</div>
+
+
+
+    <script>
+		document.querySelector('.btn-new').addEventListener('click', () =>
+		  {
+			const value = document.querySelector('.input__todo').value
+			if(!value) return
+			//處理todo
+			const div = document.createElement('div')
+			div.classList.add('todo')
+			div.innerHTML = `
+				<input class="todo__check" type="checkbox"/>
+				<div class="todo__title">${escapeHtml(value)}</div>
+				<button class="btn-delete">刪除</button>
+			`
+			//todo準備好之後，加進todos裡面
+			document.querySelector('.todos').appendChild(div)
+			document.querySelector('.input__todo').value = ''
+		})
+
+		//event delegation / proxy
+		document.querySelector('.todos').addEventListener('click',(e)=>{
+			//let click = e.target.classList.remove('todo')
+			const target = e.target // => const { target } = event
+			//如果點到的元素有包含刪除，就去找他的父節點，就可以找到todo，然後直接刪除整個todo
+			if(target.classList.contains('btn-delete')){
+				target.parentNode.remove() 		
+				return			
+			}
+
+			// check/uncheck todo
+			if(target.classList.contains('todo__check')){
+				if(target.checked){
+					target.parentNode.classList.add('done') //<div class="todo done">						
+				} else {
+					target.parentNode.classList.remove('done')
+				}
+				//console.log(target.checked) //這屬性可以看有沒有被勾起來。
+			}
+				
+				
+				
+			})
+
+			function escapeHtml(unsafe) {
+					return unsafe
+						.replace(/&/g, "&amp;")
+						.replace(/</g, "&lt;")
+						.replace(/>/g, "&gt;")
+						.replace(/"/g, "&quot;")
+						.replace(/'/g, "&#039;");
+				}
+	</script>
+</body>
+</html>
