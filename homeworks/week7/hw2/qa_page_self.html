@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>餐廳官網</title>
+  <!-- 做RWD的時候用的meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 把一些地方初始化 -->
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+
+  <style>
+      .navbar {
+        box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+      }
+      
+      .navbar .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        height: 84px;
+        background:white;
+        padding: 0px 20px; 
+      }
+   
+      /* title左邊名稱選單 */
+      .navbar__site-name {
+        color: #489846;
+        font-size: 36px;
+      }
+
+      /* title右邊選單 */
+      .navbar__list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          font-size: 18px;
+      }
+      /* title右邊選單 的每一個li */
+      .navbar__list  li {
+          margin-left: 12px;
+          border-radius: 8px;  
+          transition: background 0.1s;
+      }
+
+      .navbar__list  li.active,.navbar__list  li:hover {
+          background: #ff7286;
+      }
+
+      
+      .navbar__list  li.active a,.navbar__list  li:hover a {
+          color:white;
+      }
+
+      .navbar__list  li a {  
+         display:block;    
+         text-decoration: none;       
+         color:black;
+         padding: 12px 24px;
+             
+      }
+
+      .wrapper {
+        max-width: 1280px;
+        margin:0 auto; /* 置中 */
+        padding: 0px 12px;
+      }
+
+      /* .wrapper__content{
+        max-width: 645px;          
+        background: white;           
+        margin: 10% auto;
+        box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);
+        border-top: solid 8px #fad312;        
+        padding: 64px 32px;
+      } */
+
+      h2 {
+        margin: 0;
+      }
+
+      .section {
+          text-align: center;
+          margin-top: 80px;
+      }
+
+      .section__title {
+        display: inline-block;
+        font-size: 36px;
+        border-left: solid 15px #a3dea2;
+        padding-left: 16px;
+        margin-bottom: 36px;
+      }
+
+      /*問與答CSS*/
+      .faq-block {
+        max-width: 645px;
+        margin: 0 auto;
+        /* margin: 0 auto;
+        padding-right: 35%;  */
+      }
+
+      .faq_box {
+        display: block; 
+        justify-content: center;
+        padding-bottom: 20px; 
+        border-bottom: solid 1px #a6e2c0;     
+        margin-bottom: 15px  
+      }
+
+      .faq_qs {
+        display: flex;
+        line-height: 1.5em;
+        
+      }
+
+      .faq_number {
+        color: #70b282; 
+        font-size: 24px;
+       
+      }
+
+      .faq_question {
+        font-size: 18px;
+        font-weight: normal;
+        padding-left: 5px;
+      }
+
+      .faq_answer {
+        padding-top: 10px;
+        font-weight: normal;
+        padding-left: 38px;
+        text-align: left;
+        width: 100%;
+      }
+
+      /*記住這寫法，不用空格*/
+      .faq_answer.solid {
+        display: none;
+      }
+
+     
+      
+      
+
+
+      /* .faq_box {
+        padding-bottom: 30px;
+        display: flex;
+        justify-content: center;
+        text-align: left;
+        border-bottom: solid 1px #a6e2c0;     
+        cursor: pointer;
+      }
+
+
+      .faq_number {
+        color: #70b282; 
+        font-size: 24px;
+        margin-right: 16px;
+        line-height: 24px;    
+      }
+
+
+      .faq_question {
+        font-size: 18px;
+        margin: 0;
+        font-weight: normal;
+        line-height: 24px;
+      }
+
+      .faq_answer {    
+        font-size: 16px;
+      } */
+
+      /* .faq_answer.solid {
+        padding-bottom: 28px;
+        border-bottom: solid 3px #a6e2c0;
+      } */
+
+      
+      /* .hide__answer {
+        visibility:hidden;
+        /* overflow: hidden;
+      } */
+
+
+      footer {
+        margin-top: 48px;
+      }
+
+      .footer__bottom {
+        background: #35564b;
+        padding: 12px;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+      }
+
+      .footer__top {
+        background:#e8efee;
+        padding: 32px;
+        color: #484848;
+      }
+
+      .footer__top .wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .footer__info {
+        margin-right: 16px;
+      }
+
+      .footer__info div + div {
+        margin-top: 10px;
+      }
+
+      .footer__site {
+        font-size: 36px;
+        color: #489846;
+      }
+
+
+     
+      
+
+
+  </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.2.3/jquery.min.js"></script>
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="wrapper">
+            <div class="navbar__site-name">
+                Just A Bite!
+            </div>
+
+            <!-- active代表被選中 -->
+            <ul class="navbar__list">
+                <li><a href="#">抽個大獎</a></li>
+                <li><a href="#">我要點餐</a></li>
+                <li><a href="#">查詢訂單</a></li>
+                <li class="active"><a href="#">常見問題</a></li>
+            </ul>
+        </div>
+    </nav>
+   
+
+    <div class="wrapper__content">
+        <section class="section">
+            <h2 class="section__title">
+              FAQ - 常見問題
+            </h2>
+            <div class="faq-block">
+              <div class="faq_box">
+                <div class="faq_qs">
+                    <div class="faq_number"> Q1:     </div>  
+                    <h2 class="faq_question">線上刷卡如何操作呢？</h2>    
+                </div>
+                <div class="faq_answer solid">                               
+                      線上申辦會員卡接受國泰世華銀行COSTCO聯名卡、國泰世華Visa金融卡以及其他信用卡付款。
+                      線上申辦會員卡接受國泰世華銀行COSTCO聯名卡、國泰世華Visa金融卡以及其他信用卡付款。線上申辦會員卡接受國泰世華銀行COSTCO聯名卡、國泰世華Visa金融卡以及其他信用卡付款。               
+                </div>
+              </div>
+              <div class="faq_box">
+                <div class="faq_qs">
+                    <div class="faq_number"> Q2:     </div>  
+                    <h2 class="faq_question">線上刷卡如何操作呢？</h2>    
+                </div>
+                <div class="faq_answer">                               
+                      線上申辦會員卡接受國泰世華銀行COSTCO聯名卡、國泰世華Visa金融卡以及其他信用卡付款。
+                      線上申辦會員卡接受國泰世華銀行COSTCO聯名卡、國泰世華Visa金融卡以及其他信用卡付款。線上申辦會員卡接受國泰世華銀行COSTCO聯名卡、國泰世華Visa金融卡以及其他信用卡付款。               
+                </div>
+              </div>
+             
+            </div>      
+            
+           
+        </section>    
+    </div>
+
+
+     
+
+     
+      <footer>
+        <div class="footer__top">
+          <div class="wrapper">
+            <div class="footer__info">
+              <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+              <div>訂位專線：02-1314-5566</div>
+              <div>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</div>
+              <div>email：service@justabite.com.tw</div>
+            </div>
+            <div>
+              <div class="footer__site">Just A Bite!</div>
+              <div>Facebook / Instagram / Youtube</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有</div>
+      </footer>
+    <script>
+  
+      const FAQ = document.querySelector('.faq-block')
+      FAQ.addEventListener('click',function(e){
+     
+        const element =  e.target.closest(".faq_box") //closest找最接近的元素，從自身開始往父層級開始找。
+        //console.log(element.children(".faq_answer"))
+        console.log(element)
+        //如果有點到元素，就去改變答案的CSS
+        if(element){    
+          //選元素
+          const ans = element.querySelector(".faq_answer")
+          //找有沒有solid
+          const ans_result = ans.classList.toggle('solid')     
+          //如果是true就做事，雖可以解決問題但寫法有點怪會有錯誤。        
+          if(ans_result){
+            ans_result.classList.remove('solid')
+           
+          }else{
+            ans_result.classList.add('solid')
+          } 
+          
+          //方法2
+              // const ans = element.querySelector(".faq_answer")
+              // if(ans){
+              //  ans.classList.toggle('solid')
+              // }
+
+          //方法3
+              // const ans = element.querySelector(".faq_answer")
+
+              // const hasSolid = ans.classList.contains('solid')
+
+              // if(hasSolid){
+              //   ans.classList.remove('solid')
+              // } else {
+              //   ans.classList.add('solid')
+              // }
+          
+        } 
+      })
+      
+    </script>
+</body>
+</html>

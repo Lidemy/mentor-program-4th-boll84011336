@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+
+    
+        <style>
+            #outside {
+                background-color:blue;
+                width:100px;
+                height:200px;
+            }
+        </style>
+    </head>
+
+
+    <body> 
+        <div id="outside"> 
+            <div id="inside" style="background-color:red; width:80px; height:100px;">
+                <input id="clickMe" type="button" value="點我"/>
+            </div>
+        </div>
+
+        <script>
+            document.getElementById('outside').onclick=() =>{
+                console.log('外面的div')
+            }
+        
+            document.getElementById('inside').onclick=() =>{
+                console.log('裡面的div')
+            }
+            document.getElementById('clickMe').onclick=() =>{
+                console.log('觸發按鈕的事件')
+            //阻止事件繼續冒泡
+            event.stopPropagation()
+            }
+        </script>
+
+        <a id="a_clickMe" href="https://ithelp.ithome.com.tw/articles?tab=tech">跳到google</a>
+        <script>
+        document.getElementById('a_clickMe').onclick = () =>{
+        console.log('跳頁的事件')
+        //取消DOM預設功能
+        event.preventDefault()
+        }
+        </script>
+    </body>
+</html>
