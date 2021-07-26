@@ -215,36 +215,41 @@
            let hasError = false //是否有錯誤，一開始沒有
            let values = {}
           
-           const ele = document.querySelectorAll('.required')
-           for(let element of ele){
-              const radios = element.querySelectorAll('input[type=radio]')
-              const input = element.querySelector('input[type=text]')
+            const ele = document.querySelectorAll('.required')
+            for(let element of ele){
+                const radios = element.querySelectorAll('input[type=radio]')
+                const input = element.querySelector('input[type=text]')
 
-              let isValid = true //假設一開始有
-              if(input){
-                values[input.name] = input.value
-                if(!input.value){                                    
-                    isValid = false              
-                } 
-              } else if (radios.length) {
-                isValid = [...radios].some(radio => radio.checked)//去找有沒有任何一個是打勾的
-                if(isValid){
-                    let r = element.querySelector('input[type=radio]:checked')
-                    values[r.name] = r.value
+                let isValid = true //假設一開始有
+                if(input){
+                    values[input.name] = input.value
+                    if(!input.value){                                    
+                        isValid = false              
+                    } 
+                } else if (radios.length) {
+                    isValid = [...radios].some(radio => radio.checked)//去找有沒有任何一個是打勾的
+                    if(isValid){
+                        let r = element.querySelector('input[type=radio]:checked')
+                        values[r.name] = r.value
+                    }
+                } else {
+                    continue
                 }
-              } else {
-                continue
-              }
-             
-              //統一檢查全部，如果沒過驗證，就把隱藏錯誤的元素(移除)，即出現錯誤提示。
-              if(!isValid){
-                element.classList.remove('hide-error')      
-                hasError = true
-              } else {
-                element.classList.add('hide-error') 
-              }
-           }
-           alert(JSON.stringify(values))
+                
+                //統一檢查全部，如果沒過驗證，就把隱藏錯誤的元素(移除)，即出現錯誤提示。
+                if(!isValid){
+                    element.classList.remove('hide-error')      
+                    hasError = true //有錯
+                } else {
+                    element.classList.add('hide-error') 
+                }
+            }
+
+            //沒錯的話就alert
+            if (!hasError) {
+              alert(JSON.stringify(values))
+            }
+          
         })
         
     </script>
