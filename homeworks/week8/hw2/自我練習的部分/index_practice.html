@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Twitch Top Games</title>
+  <!-- 做RWD的時候用的meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 把一些地方初始化 -->
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+
+  <style>
+      *{
+        box-sizing: border-box;
+      }
+    
+      
+      .navbar {
+        box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+      }
+      
+      .navbar .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        height: 84px;
+        background:white;
+        padding: 0px ; 
+      }
+   
+      /* title左邊名稱選單 */
+      .navbar__site-name {     
+        color: black;
+        font-size: 36px;
+      }
+
+      /* title右邊選單 */
+      .navbar__list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          font-size: 16px;
+      }
+      /* title右邊選單 的每一個li */
+      .navbar__list  li {
+          margin-left: 12px;
+          border-radius: 8px;  
+          transition: background 0.1s;
+      }
+
+      .navbar__list  li.active,.navbar__list  li:hover {
+          background: #5ec1b6;
+      }
+
+      
+      .navbar__list  li.active a,.navbar__list  li:hover a {
+          color:white;
+      }
+
+      .navbar__list  li a {  
+         display:block;    
+         text-decoration: none;       
+         color:black;
+         padding: 12px 16px;
+             
+      }
+
+      .wrapper {
+        max-width: 1280px;
+        margin:0 auto; /* 置中 */
+        padding: 0px 12px;
+      }
+
+      h2{
+        margin: 0;
+      }
+
+      .section {
+          text-align: center;    
+          background-color: white;
+      }
+
+      .section-title{
+        font-size: 22px;
+        margin-bottom: 10px;
+      }
+
+      .section-info{
+        font-size: 18px;        
+      }
+
+      .games{
+        display: inline-flex;
+        margin-top: 18px;  
+       
+      }
+      
+      .game_comment__author{
+        justify-content: space-between;
+      }
+
+      /* .comment__author {
+        display: inline-block;
+        position: absolute;
+        top: 18px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      } */
+
+      .comment__author p{
+        margin-top: 5px;
+        line-height: 18px;
+      }
+
+      .games_image{
+        margin: 8px;         
+        display: inline-block;      
+        top: 18px;
+      }
+
+      .games_comment{
+        width: 50%;
+      }
+
+      .game_info { 
+        top: 40%;
+      
+      }
+
+      .footer__top {
+        background:#e8efee;
+        padding: 32px;
+        color: #484848;
+      }
+
+      .footer__top .wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .footer__info {
+        margin-right: 16px;
+      }
+
+
+      /* 手機板768大小 */
+      @media(max-width: 768px){
+        .navbar .wrapper {
+            height: 108px;
+            flex-direction: column;
+            justify-content:space-between;
+            padding: 0px;
+        }
+
+        .navbar__site-name{
+            margin-top: 10px;
+        }
+
+        .navbar__list{
+            display: flex;
+            width: 100%;
+        }
+        
+        .navbar__list  li{
+            flex: 1;
+            margin-left: 0;
+            border-radius: 0;
+            text-align: center;
+        }
+        .btn-query {
+            margin-left: 0px;
+            margin-top: 16px;
+        }
+
+        .section__images{
+            flex-direction: column;
+        }
+
+        .section__images div{
+            width:100%;
+        }
+
+        .footer__top .wrapper {
+        flex-direction: column-reverse;
+      }
+
+        .footer__info {
+          margin-right: 0;
+          margin-top: 16px;
+        }
+
+        /* .section-lottery{
+          background: none;
+        } */
+
+        
+        .lottery-info{
+          transform: none;
+          top:0;
+          left: 0;
+          border-radius: 0;
+        }
+
+      }
+
+      .hide{
+        display: none;
+      }
+      
+
+
+  </style>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="wrapper">        
+            <div class="navbar__site-name">
+              Twitch Top Games
+            </div>
+            <!-- active代表被選中 -->
+            <ul class="navbar__list">
+                <li class="active"><a href="#">League of Legends</a></li>
+                <li><a href="#">Just Chatting</a></li>
+                <li><a href="#">Fortnite</a></li>
+                <li><a href="#">FIFA 20</a></li>
+                <li><a href="#">Counter-Strike: Global Offensive</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="section">
+      <div class="section-title">Fortnite</div>       
+      <div class="section-info">
+       Top 20 popular live streams sorted by current viewers
+       <div class="Twitch-games">
+        <!-- 遊戲列表 -->
+        <!-- 第一塊 -->
+          <div class="games">
+            <div class="games__cls">
+              <div class="games_image"> <img src="../card.gif"/></div>
+              <div class="games_comment">               
+                  <div class="comment__avatar"><img src="./p-2.png"/></div>
+                  <div class="games_info">我一生疲於建國，去過日本，去過歐洲，卻從未到過台北101，也從來沒有吃過這麼好吃的東西...</div>
+                  <p>stompy</p>            
+              </div>
+                
+            </div>  
+          </div>     
+        </div>  
+     </div>
+     
+
+  
+    </section>
+
+      <footer>
+      </footer>
+      <script>
+          const apiUrl= "https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery"
+          const errorMessage = "系統不穩定，請再試一次"
+          
+      </script>
+</body>
+</html>

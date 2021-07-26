@@ -1,0 +1,3 @@
+index  抽獎API拆開寫
+index2 抽獎 不把API寫成function
+index3 有空再寫  加了解構 程式碼更簡潔 

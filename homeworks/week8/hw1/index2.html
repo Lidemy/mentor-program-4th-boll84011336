@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>餐廳官網</title>
+  <!-- 做RWD的時候用的meta -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- 把一些地方初始化 -->
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
+
+  <style>
+      *{
+        box-sizing: border-box;
+      }
+      
+      .navbar {
+        box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+      }
+      
+      .navbar .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items:center;
+        height: 84px;
+        background:white;
+        padding: 0px 20px; 
+      }
+   
+      /* title左邊名稱選單 */
+      .navbar__site-name {
+        color: #489846;
+        font-size: 36px;
+      }
+
+      /* title右邊選單 */
+      .navbar__list {
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          display: flex;
+          font-size: 18px;
+      }
+      /* title右邊選單 的每一個li */
+      .navbar__list  li {
+          margin-left: 12px;
+          border-radius: 8px;  
+          transition: background 0.1s;
+      }
+
+      .navbar__list  li.active,.navbar__list  li:hover {
+          background: #ff7286;
+      }
+
+      
+      .navbar__list  li.active a,.navbar__list  li:hover a {
+          color:white;
+      }
+
+      .navbar__list  li a {  
+         display:block;    
+         text-decoration: none;       
+         color:black;
+         padding: 12px 24px;
+             
+      }
+
+      .wrapper {
+        max-width: 1280px;
+        margin:0 auto; /* 置中 */
+        padding: 0px 12px;
+      }
+
+      .section-lottery {
+        position: relative;
+        height: 600px;
+        background: url(./images/games-bn.jpg) center/cover no-repeat;
+      }
+
+      .section-lottery.first-prize{
+        background-image: url(./lottery_bg/bg.jpg);
+      }
+
+      .section-lottery.second-prize{
+        background-image: url(./lottery_bg/phone.jpg);
+      }
+
+      .section-lottery.third-prize{
+        background-image: url(./lottery_bg/tv.jpg);
+      }
+
+      .section-lottery.none-prize{
+        background: black;
+        color: white;
+      }
+
+      .section-lottery::after {
+        content: '';
+        position: absolute;
+        background:rgba(0, 0, 0, 0.3);
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+
+      h2{
+        margin: 0;
+      }
+
+      .lottery-result{ 
+        max-width: 800px;      
+        position: relative;
+        color: #292222;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);   
+        text-align: center;
+        /* padding: 40px 40px 24px 20px;
+        border-radius: 16px;
+        color:#322929; */
+      }
+
+      .lottery-result__title{
+        margin-bottom: 48px;
+        font-size: 36px;
+      }
+
+      .lottery-result__btn{      
+        max-width: 330px;
+        text-align: center;
+        background-color: #e62a45;
+        padding: 16px 0px;
+        border-radius: 8px;
+        margin: 0 auto; /*對於這種一行沒有滿又要置中的時候使用 */
+        color: white;
+      }
+
+      .lottery-info {
+        max-width: 500px;
+        background: white;
+        position: relative;
+        margin: 0;
+        color: white;
+        z-index: 2;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);   
+        text-align: center;
+        padding: 40px 40px 24px 20px;
+        border-radius: 16px;
+        color:#322929;
+      }
+
+      /*標題*/
+      .lottery-info__title{
+        color: #5ec1b6;       
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 24px;
+      }
+
+       /*中間內文區塊*/
+      .lottery-info__desc{
+        display: flex;
+        align-items: flex-start;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+        padding-bottom: 12px;
+        margin-bottom: 24px;
+        font-size: 16px;
+      }
+
+     
+
+      .lottery-info__desc-title{
+        font-weight: bold;
+        font-size: 18px;
+        width: 90px;
+      }
+
+      .lottery-info__desc-content{
+        flex:1; /*把這行剩下的空間給他*/
+        text-align: left;
+        margin-left: 12px;
+        line-height: 1.5em;
+      }
+
+      .lottery-info__btn {
+        width: 80%;
+        text-align: center;
+        background-color: #e62a45;
+        padding: 16px 0px;
+        border-radius: 8px;
+        margin: 0 auto; /*對於這種一行沒有滿又要置中的時候使用 */
+        color: white;
+      }
+
+      .section {
+          text-align: center;
+          margin-top: 80px;
+      }
+
+    
+      .footer__bottom {
+        background: #35564b;
+        padding: 12px;
+        text-align: center;
+        color: white;
+        font-size: 16px;
+      }
+
+      .footer__top {
+        background:#e8efee;
+        padding: 32px;
+        color: #484848;
+      }
+
+      .footer__top .wrapper {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .footer__info {
+        margin-right: 16px;
+      }
+
+      .footer__info div + div {
+        margin-top: 10px;
+      }
+
+      .footer__site {
+        font-size: 36px;
+        color: #489846;
+      } 
+
+      /* 手機板768大小 */
+      @media(max-width: 768px){
+        .navbar .wrapper {
+            height: 108px;
+            flex-direction: column;
+            justify-content:space-between;
+            padding: 0px;
+        }
+
+        .navbar__site-name{
+            margin-top: 10px;
+        }
+
+        .navbar__list{
+            display: flex;
+            width: 100%;
+        }
+        
+        .navbar__list  li{
+            flex: 1;
+            margin-left: 0;
+            border-radius: 0;
+            text-align: center;
+        }
+        .btn-query {
+            margin-left: 0px;
+            margin-top: 16px;
+        }
+
+        .section__images{
+            flex-direction: column;
+        }
+
+        .section__images div{
+            width:100%;
+        }
+
+        .footer__top .wrapper {
+        flex-direction: column-reverse;
+      }
+
+        .footer__info {
+          margin-right: 0;
+          margin-top: 16px;
+        }
+
+        /* .section-lottery{
+          background: none;
+        } */
+
+        
+        .lottery-info{
+          transform: none;
+          top:0;
+          left: 0;
+          border-radius: 0;
+        }
+
+      }
+
+      .hide{
+        display: none;
+      }
+      
+
+
+  </style>
+
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="wrapper">
+            <div class="navbar__site-name">
+                Just A Bite!
+            </div>
+
+            <!-- active代表被選中 -->
+            <ul class="navbar__list">
+                <li class="active"><a href="#">抽個大獎</a></li>
+                <li><a href="#">我要點餐</a></li>
+                <li><a href="#">查詢訂單</a></li>
+                <li><a href="#">常見問題</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="section-lottery">
+     <div class="lottery-info">
+       <div class="lottery-info__title">
+        2020 夏日輕盈特賞！ 抽獎活動辦法
+       </div>
+       <!-- 文字區塊 -->
+       <!-- 第一塊 -->
+       <div class="lottery-info__desc">
+          <div class="lottery-info__desc-title">活動期間：</div>
+          <div class="lottery-info__desc-content">2020/06/01~2020/07/01</div>
+       </div>
+       <!-- 第二塊 -->
+       <div class="lottery-info__desc">
+        <div class="lottery-info__desc-title">活動說明：</div>
+        <div class="lottery-info__desc-content">
+          今天老闆佛心來著決定給大家發獎勵，有看有機會，沒看只能幫QQ！
+          只要在店內消費滿1000000元即有機會獲得 - 頭獎日本東京來回雙人遊！</div>
+       </div>
+       <!-- 第三塊 -->
+       <div class="lottery-info__desc">
+        <div class="lottery-info__desc-title">獎品：</div>
+        <div class="lottery-info__desc-content">
+          ❤ 頭獎一名：日本東京來回雙人遊(市價14990元)<br>
+          ❤ 貳獎三名：90 吋電視一台(市價5990元)<br>
+          ❤ 參獎十名：知名 YouTuber 簽名握手會入場券一張(市價1500元)<br>
+        </div>
+       </div>
+       <div class="lottery-info__btn">我要抽獎</div>
+     </div>
+     <!-- 抽獎結果頁面 -->
+     <div class="lottery-result hide">
+      <h2 class="lottery-result__title">恭喜你中頭獎了！日本東京來回雙人遊！</h2>
+      <div class="lottery-result__btn" onclick="javascript:window.location.reload()">我要抽獎</div>
+     </div>
+    </section>
+
+      <footer>
+        <div class="footer__top">
+          <div class="wrapper">
+            <div class="footer__info">
+              <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
+              <div>訂位專線：02-1314-5566</div>
+              <div>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</div>
+              <div>email：service@justabite.com.tw</div>
+            </div>
+            <div>
+              <div class="footer__site">Just A Bite!</div>
+              <div>Facebook / Instagram / Youtube</div>
+            </div>
+          </div>
+        </div>
+        <div class="footer__bottom">Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有</div>
+      </footer>
+      <script>
+          const apiUrl= "https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery"
+          const errorMessage = "系統不穩定，請再試一次"
+          document.querySelector(".lottery-info__btn").addEventListener('click', () => {
+          let xhr = new XMLHttpRequest()                    
+          xhr.open('GET', apiUrl, true)
+          xhr.onload = function(){           
+            if(xhr.status >= 200 && xhr.status <400){
+              let data
+              //try 如果回來的data不是JSON格式的話
+              try {
+                data = JSON.parse(xhr.response)
+              } catch (error) {
+                alert('errorMessage')
+                console.log(error)
+                return
+              }
+             
+              if(!data.prize){
+                alert('errorMessage')
+                return
+              }
+              let className
+              let title
+              if(data.prize ==="FIRST"){
+                className = "first-prize"
+                title = "恭喜你中頭獎了！日本東京來回雙人遊！"
+              } else if(data.prize ==="SECOND"){
+                className = "second-prize"
+                title = "二獎！90 吋電視一台！"
+              } else if(data.prize ==="THIRD"){
+                className = "third-prize"
+                title = "恭喜你抽中三獎：知名 YouTuber 簽名握手會入場券一張，bang！"
+              } else if(data.prize ==="NONE"){
+                className = "none-prize"
+                title = "銘謝惠顧"
+              }
+              document.querySelector('.section-lottery').classList.add(className) //改背景圖
+              document.querySelector(".lottery-result__title").innerText = title //加字
+              document.querySelector(".lottery-info").classList.add("hide")//點了之後把info 加上hide元素 隱藏抽獎的中間區塊
+              document.querySelector(".lottery-result").classList.remove("hide")//把result的hide移除掉，這樣就會顯示抽獎的頁面
+            } else {
+              alert('errorMessage') //else狀態回來的不是200~400之間的話
+            }          
+          }
+          xhr.onerror = function(){
+            alert('errorMessage')
+          }
+          xhr.send()
+        })   
+      </script>
+</body>
+</html>
