@@ -377,41 +377,25 @@
       <script>
           const apiUrl= "https://dvwhnbka7d.execute-api.us-east-1.amazonaws.com/default/lottery"
           const errorMessage = "系統不穩定，請再試一次"
-          //抽獎 api
-          function getPrize(cb){
-              let xhr = new XMLHttpRequest()                    
-              xhr.open('GET', apiUrl, true)
-              xhr.onload = function(){           
-              if(xhr.status >= 200 && xhr.status <400){
-                let data
-                //try 如果回來的data不是JSON格式的話
-                try {
-                  data = JSON.parse(xhr.response)
-                } catch (err) {
-                  cb(errorMessage)
-                  return
-                }
-              
-                if(!data.prize){
-                  cb(errorMessage)
-                  return
-                }
-
-                cb(null, data)
-              }
-            }
-            xhr.onerror = function(){
-              alert('errorMessage')
-            }
-            xhr.send()        
-          }
-        
-          document.querySelector(".lottery-info__btn").addEventListener('click', () => { 
-            getPrize(function(err, data){
-              if(err){
-                alert(err) 
+          document.querySelector(".lottery-info__btn").addEventListener('click', () => {
+          let xhr = new XMLHttpRequest()                    
+          xhr.open('GET', apiUrl, true)
+          xhr.onload = function(){           
+            if(xhr.status >= 200 && xhr.status <400){
+              let data
+              //try 如果回來的data不是JSON格式的話
+              try {
+                data = JSON.parse(xhr.response)
+              } catch (error) {
+                alert('errorMessage')
+                console.log(error)
                 return
-              }  
+              }
+             
+              if(!data.prize){
+                alert('errorMessage')
+                return
+              }
               let className
               let title
               if(data.prize ==="FIRST"){
@@ -431,8 +415,15 @@
               document.querySelector(".lottery-result__title").innerText = title //加字
               document.querySelector(".lottery-info").classList.add("hide")//點了之後把info 加上hide元素 隱藏抽獎的中間區塊
               document.querySelector(".lottery-result").classList.remove("hide")//把result的hide移除掉，這樣就會顯示抽獎的頁面
-            })           
-          })   
+            } else {
+              alert('errorMessage') //else狀態回來的不是200~400之間的話
+            }          
+          }
+          xhr.onerror = function(){
+            alert('errorMessage')
+          }
+          xhr.send()
+        })   
       </script>
 </body>
 </html>
