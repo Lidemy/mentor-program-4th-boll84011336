@@ -52,10 +52,24 @@
     }
 
     tr {
-      border: 2px solid #283618;
-      
+      border: 2px solid #283618;     
     }
-   
+
+    .board__top {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .board__title {
+      box-sizing: border-box;
+      padding:0;
+      margin:0;
+    }
+
+    .board__btn {
+      border: 1px solid #ecc8ae;
+    }
+
   </style>
 
 </head>
@@ -65,9 +79,14 @@
     <strong>注意!本站為練習用網站，因教學用途刻意忽略資安的實作，註冊時請勿使用任何真實的帳號或密碼。
     </strong>
   </header>
-  <main class="board">   
-      
+  <main class="board">     
+    <div class="board__top">  
       <h1 class="board__title">權限管理</h1>
+      <div class="btn">
+        <a class="board__btn" href="../index.php">回首頁</a>
+      </div>     
+    </div>
+      
       <div class="board__hr"></div>
       <?php
         if (!empty($_GET['success'])) {
