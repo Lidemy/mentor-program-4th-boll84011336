@@ -104,7 +104,7 @@
     const todoId = searchParams.get('id')
     //console.log(searchParams.get('id')) //URLSearchParams.get() 取值
     if(todoId) {
-      $.getJSON('http://localhost/stephy/board/api_comments/12week/hw2/get_todos.php?id='+ todoId, function(api_data) {
+      $.getJSON('./get_todos.php?id='+ todoId, function(api_data) {
         const todos = JSON.parse(api_data.data.content)
         restoreTodos(todos)    //是一個array裡面有全部的todo 
       });
@@ -216,7 +216,7 @@
       const data = JSON.stringify(todos)
       $.ajax({
         type: 'POST',
-        url: 'http://localhost/stephy/board/api_comments/12week/hw2/api_add_todo.php',
+        url: './api_add_todo.php',
         data: {
           content: data
         },

@@ -49,7 +49,7 @@
 
 		//拿留言的API
 		function getCommentsAPI(siteKey, before, cb) {		
-			let url = `http://localhost/stephy/board/api_comments/12week/api_comments.php?site_key=${siteKey}`
+			let url = `./api_comments.php?site_key=${siteKey}`
 			if (before) {		
 				url = `${url}&before=${before}`		
 			}
@@ -85,7 +85,7 @@
 				}				
 				$.ajax({
 					type: 'POST',
-					url: 'http://localhost/stephy/board/api_comments/12week/api_add_comments.php',
+					url: './api_add_comments.php',
 					data: CommentData
 				}).done(function(data){				
 					if(!data.ok){
