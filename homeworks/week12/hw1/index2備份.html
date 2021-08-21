@@ -1,0 +1,111 @@
+<!Doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Week12 留言板</title>
+  <meta name="description" content="The HTML5 Herald">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+	<style >
+		.btn-primary {
+			margin-top: 15px;
+		}
+
+		.card {
+			margin-top: 12px;
+		}
+	</style>
+	<script>
+		//XSS 
+		function escape(toOutput){
+				return toOutput.replace(/\&/g, '&amp;')
+						.replace(/\</g, '&lt;')
+						.replace(/\>/g, '&gt;')
+						.replace(/\"/g, '&quot;')
+						.replace(/\'/g, '&#x27')
+						.replace(/\//g, '&#x2F');
+		}
+
+		$(document).ready(() => {
+			$.ajax({
+				url: "http://localhost/stephy/board/api_comments/12week/api_comments.php?site_key=aaa"
+			}).done(function(data) {				
+				if (!data.ok) {
+					alert(data.message)
+					return
+				}
+
+				const comments = data.discussions;
+				for (let comment of comments) {
+					$(".comments").append(`
+						<div class="card">
+							<div class="card-body">
+								<h5 class="card-title">${escape(comment.nickname)}</h5>					
+								<p class="card-text">${escape(comment.content)}</p>					
+							</div>
+						</div>
+					`)
+				}
+			});
+			
+			$(".add-comment-form").submit(e =>{
+				e.preventDefault();
+				$.ajax({
+					type: 'POST',
+					url: 'http://localhost/stephy/board/api_comments/12week/api_comments.php?site_key=aaa',
+					data: {
+						'site_key': 'aaa',
+						'nickname': $('input[name=nickname]').val(),
+						'content' : $('textarea[name=content]').val()
+					}
+				}).done(function(data){
+					if(!data.ok){
+						alert(data.message)
+						return
+					}
+				});
+			})
+		})
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<form class="add-comment-form">
+
+			<div class="form-group">
+				<label for="form-nickname" class="form-label">暱稱</label>
+				<input name="nickname" class="form-control" id="form-nickname" >
+
+			</div>
+
+			<div class="form-group">
+				<label for="Content-Textarea">留言內容</label>
+				<textarea name="content" class="form-control" placeholder="Leave a comment here" id="Content-Textarea" row="3"></textarea>				
+			</div>		
+			<button type="submit" class="btn btn-primary">送出</button>
+			<div class="comments">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">huli</h5>					
+						<p class="card-text">Some quick example text to build on the card title 
+							and make up the bulk of the card's content.</p>					
+					</div>
+				</div>
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">huli</h5>					
+						<p class="card-text">Some quick example text to build on the card title 
+							and make up the bulk of the card's content.</p>					
+					</div>
+				</div>
+			</div>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
