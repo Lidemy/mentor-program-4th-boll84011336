@@ -1,0 +1,159 @@
+<!Doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Week12 留言板</title>
+  <meta name="description" content="The HTML5 Herald">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+	<style >
+		.btn-primary {
+			margin-top: 15px;
+		}
+
+		.card {
+			margin-top: 12px;
+		}
+	</style>
+	<script>
+		//XSS 
+		function escape(toOutput){
+				return toOutput.replace(/\&/g, '&amp;')
+						.replace(/\</g, '&lt;')
+						.replace(/\>/g, '&gt;')
+						.replace(/\"/g, '&quot;')
+						.replace(/\'/g, '&#x27')
+						.replace(/\//g, '&#x2F');
+		}
+
+		//把新增的留言append
+		function appendCommentToDom(container, comment, isPrepend) {
+			const html = `
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">${escape(comment.nickname)}</h5>					
+						<p class="card-text">${escape(comment.content)}</p>					
+					</div>
+				</div>
+			`
+			if (isPrepend) {
+				container.prepend(html)
+			} else {
+				container.append(html)
+			}		
+		}
+
+		//拿留言的API
+		function getCommentsAPI(siteKey, before, cb) {		
+			let url = `./api_comments.php?site_key=${siteKey}`
+			if (before) {		
+				url = `${url}&before=${before}`		
+			}
+			$.ajax({
+				url,		
+			}).done(function(data) {	
+				cb(data)
+			});
+		}
+		
+	
+		const siteKey = '666'
+		const loadMoreButtonHTML = '<button class="load-more btn btn-primary">載入更多</button>'
+		let before = null
+		let isEnd = false
+
+		
+		$(document).ready(() => {	
+			const commentDOM = $('.comments')	
+			getComments() // 呼叫loadmore
+
+			$('.comments').on('click', '.load-more', () => {
+				getComments() // 呼叫loadmore
+			})
+			
+
+			$(".add-comment-form").submit(e => {
+				e.preventDefault();
+				const CommentData = {
+					'site_key': '666',
+					'nickname': $('input[name=nickname]').val(),
+					'content' : $('textarea[name=content]').val()
+				}				
+				$.ajax({
+					type: 'POST',
+					url: './api_add_comments.php',
+					data: CommentData
+				}).done(function(data){				
+					if(!data.ok){
+						console.log(data.message)
+						//alert(data.message)
+						return
+					}
+					//clear input
+					$('input[name=nickname]').val('')
+					$('textarea[name=content]').val('')
+					//to do
+					appendCommentToDom(commentDOM, CommentData, true)
+				});
+			})
+		})
+		
+		function getComments () {
+			const commentDOM = $('.comments')
+			$(".load-more").hide()
+			if (isEnd) {
+				return
+			}
+			getCommentsAPI(siteKey, before, data => {
+				if (!data.ok) {
+					alert(data.message)
+					return
+				}
+				console.log('before', before);
+				const comments = data.discussions;
+			
+				for (let comment of comments) {
+					appendCommentToDom(commentDOM, comment) //把comment +到前面的$('.comments')
+				}
+
+				//改變before 並+按鈕
+				let length = comments.length			
+				if (length === 0) {
+					isEnd = true
+					$(".load-more").hide()
+				} else {
+					before = comments[length - 1].id			
+					$('.comments').append(loadMoreButtonHTML)
+				}
+			})
+		}
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<form class="add-comment-form">
+
+			<div class="form-group">
+				<label for="form-nickname" class="form-label">暱稱</label>
+				<input name="nickname" class="form-control" id="form-nickname" >
+
+			</div>
+
+			<div class="form-group">
+				<label for="Content-Textarea">留言內容</label>
+				<textarea name="content" class="form-control" placeholder="Leave a comment here" id="Content-Textarea" row="3"></textarea>				
+			</div>		
+			<button type="submit" class="btn btn-primary">送出</button>
+			<div class="comments">
+		
+			</div>
+	</div>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Week12 Todo List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <style>
+    .btn-delete {
+      opacity: 0;
+    }
+    .todo:hover .btn-delete {
+      opacity: 1;
+    }
+
+    input[type=checkbox]:checked ~ label {
+      text-decoration: line-through;
+      color: rgba(0,0,0,0.3);
+    }
+
+    .todo__content-wrapper {
+      flex: 1;
+    }
+
+    .todo__content {
+      display: block;
+    }
+
+    .options div, .clear-all {
+      cursor: pointer;
+      border-radius: 6px;
+      padding: 4px;
+      border: 2px solid transparent;
+    }
+
+    .options div.active {
+      border-color: rgba(255, 0, 0, 0.3);
+    }
+
+    .options div:hover {
+      border-color: rgba(255, 0, 0, 0.5);
+    }
+
+    .todo {
+      display: flex;
+    }
+
+    .hide {
+     display: none !important; 
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <h1 class="text-center">Todo List</h1>
+        <div class="input-group mb-3">
+          <input type="text" class="input-todo form-control" placeholder="todo">
+          <div class="input-group-append">
+            <button class="btn btn-add btn-outline-secondary" type="button">新增</button>
+          </div>
+        </div>
+        <!-- 每一個todo -->
+        <div class="todos list-group ">
+          
+        </div>
+        <div class="info mt-1 d-flex justify-content-between align-items-center">
+          <div><span class="uncomplete-count">0</span> 個未完成</div>
+          <div class="options d-flex">
+            <div class="active" data-filter="all">全部</div>
+            <div class="ml-2" data-filter="uncomplete">未完成</div>
+            <div class="ml-2" data-filter="done">已完成</div>
+          </div>
+          <div class="clear-all">
+            移除已完成待辦事項
+          </div>
+        </div>
+        <button type="button" class="btn btn-save btn-primary">儲存</button>
+
+      </div>
+    </div>
+  </div>
+  <script>
+    let id = 1 
+    let todoCount = 0 
+    let uncompleteTodoCount = 0 
+
+    const template = `<div class="todo list-group-item list-group-item-action justify-content-between align-items-center {todoClass}">
+            <div class="todo__content-wrapper custom-control custom-checkbox">
+              <input type="checkbox" class="check-todo custom-control-input" id="todo-{id}">
+              <label class="todo__content custom-control-label" for="todo-{id}">{content}</label>
+            </div>
+            <button type="button" class="btn-delete btn btn-danger">刪除</button>
+          </div>`
+
+    //拿網址ID 的todo
+    const searchParams = new URLSearchParams(window.location.search)//從?開始查url => ?id=3
+    const todoId = searchParams.get('id')
+    //console.log(searchParams.get('id')) //URLSearchParams.get() 取值
+    if(todoId) {
+      $.getJSON('./get_todos.php?id='+ todoId, function(api_data) {
+        const todos = JSON.parse(api_data.data.content)
+        restoreTodos(todos)    //是一個array裡面有全部的todo 
+      });
+    }
+
+    //把回傳過來的todo render出來
+    function restoreTodos(todos) {
+      if (todos.length === 0) return 
+      id = todos[todos.length - 1].id +1 //把新增的todo id 設定成最後一個todo+1 //不是網址列上的Id
+      for(let i=0; i<todos.length; i++) {
+        const todo = todos[i]
+        $(".todos").append(
+        template
+          .replace('{content}',escapeHtml(todo.content))
+          .replace(/{id}/g, todo.id)
+          .replace('{todoClass}', todo.isDone ? 'checked' : '') //如果isDone 就是checked，不然就給它空字串。
+        )
+        
+        todoCount ++ 
+        if(todo.isDone) {
+          $('#todo-'+ todo.id).prop('checked', true) //去設置input 的id=todo-id 的checked狀態
+        }
+
+        if(!todo.isDone){
+          uncompleteTodoCount ++
+        }
+        updateCounter()
+     
+      }
+    }
+   
+    //監聽新增的按鈕,把每一個template加進todos裡面。
+    $(".btn-add").click(() => {
+      addTodo()
+    })
+
+    //按enter可以新增，keydown => 按下按鍵的時候
+    $(".input-todo").keydown(e => {
+      if (e.key === 'Enter') {
+        addTodo()
+      }
+    })
+
+    //刪除
+    $(".todos").on('click', '.btn-delete', (e) => {
+      $(e.target).parent().remove();
+      todoCount--    
+      const isChecked = $(e.target).parent().find('.check-todo').is(":checked")      
+      if(!isChecked){
+        uncompleteTodoCount--
+      }
+      updateCounter()
+    })
+
+    //check 打勾是true
+    $(".todos").on('change', '.check-todo', (e) => {
+      const target = $(e.target) 
+      const isChecked = target.is(":checked") 
+      if (isChecked) {
+        target.parents('.todo').addClass('checked')
+        uncompleteTodoCount--
+      } else {
+        uncompleteTodoCount++
+        target.parents('.todo').removeClass('checked')
+      }
+      updateCounter()
+    })
+
+    //移除已完成待辦事項
+    $('.clear-all').click(() => {       
+      todoCount -= $('.todo.checked').length   
+      $('.todo.checked').remove()  
+    })
+
+    //三按鈕 filter
+    $('.options').on('click', 'div' , (e) => {
+      const target = $(e.target)
+      const filter = target.attr('data-filter')     
+     
+      $('.options div.active').removeClass('active')  //下面的選項remove active
+      target.addClass('active')
+  
+      if (filter === 'all'){
+        $('.todo').show()
+      } else if (filter ==='uncomplete') {
+        $('.todo').show()
+        $('.todo.checked').hide()
+      } else {
+        $('.todo').hide()
+        $('.todo.checked').show()
+      }
+
+    })
+
+    //儲存狀態 把每一個todo的id,content,isChecked拿出來 就可以記錄狀態。
+    $('.btn-save').click(() => {
+      let todos = []
+      $('.todo').each((i, element) => {     
+        const input = $(element).find('.check-todo') //isChecked
+        const label = $(element).find('.todo__content') //content
+        const id = input.attr('id').replace('todo-','')//id
+        todos.push({
+          id: id,
+          content : label.text(),
+          isDone : $(element).hasClass('checked') 
+        })
+      }) 
+
+      const data = JSON.stringify(todos)
+      $.ajax({
+        type: 'POST',
+        url: './api_add_todo.php',
+        data: {
+          content: data
+        },
+        success: function(res) {
+          const respId = res.id
+          window.location = 'index.html?id=' + respId
+          //console.log('res', res) 拿add_todo API回傳的狀態id、message、stauts)
+        },
+        error: function(){
+          alert
+        }
+      })
+    })
+
+    //更新未完成件數
+    function updateCounter() {
+      $(".uncomplete-count").text(uncompleteTodoCount)
+    }
+    
+    //新增todo
+    function addTodo() {
+      const value = $(".input-todo").val()
+      if (!value) return
+      $(".todos").append(
+        template
+          .replace('{content}',escapeHtml(value))
+          .replace(/{id}/g,id)
+      )
+      id += 1
+      todoCount ++ 
+      uncompleteTodoCount ++
+      updateCounter()
+      $(".input-todo").val("")
+    }
+    
+    //XSS
+    function escapeHtml(unsafe) {
+      return unsafe
+           .replace(/&/g, "&amp;")
+           .replace(/</g, "&lt;")
+           .replace(/>/g, "&gt;")
+           .replace(/"/g, "&quot;")
+           .replace(/'/g, "&#039;");
+    }     
+  </script>
+</body>
+</html>
