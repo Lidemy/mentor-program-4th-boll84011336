@@ -1,0 +1,12 @@
+結果會是
+2
+2
+undefined
+
+第一個2是 直接呼叫obj裡的inner物件的hello function
+
+第二個2是 把obj裡的inner物件給了obj2 並且執行obj2的hello function
+
+第三行則是直接把obj2裡的hello function給了hello並直接執行hello
+之所以最後面會是undefined的原因是因為hello只有從obj2拿到了obj2的hello()這個function
+但卻沒有辦法得到obj2這個物件的其他資訊 因此在hello中 this.value便會找不到值因此會印出undefined
