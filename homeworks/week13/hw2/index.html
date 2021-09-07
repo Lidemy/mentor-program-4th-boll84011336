@@ -1,0 +1,33 @@
+<!Doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Week13 留言板 plugin</title>
+  <meta name="description" content="The HTML5 Herald">
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+
+
+	<script src="./dist/main.js"></script>
+	<script>
+			$(document).ready(() => {
+				commentPlugin.init({
+					siteKey: '666', //key:"siteKey"; value:'666'
+					apiUrl: 'http://mentor-program.co/mtr04group6/Stephy/week12/hw1',
+					container: '.comments-area'
+				})				
+			})
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="comments-area"></div>		
+	</div>
+		
+	</div>
+</body>
+</html>
