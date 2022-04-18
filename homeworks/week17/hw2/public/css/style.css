@@ -1,0 +1,762 @@
+* {
+  box-sizing: border-box;
+}
+
+.navbar {
+  box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+}
+
+.navbar .wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 84px;
+  background: white;
+  padding: 0px 20px;
+}
+
+.back-stage__btn {
+  padding: 2px 10px;
+  border:1px solid gray;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+  text-decoration: none;
+  color: black;
+  background: white;
+}
+
+.btn-edit {
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-edit a{ 
+  border:1px solid gray;
+  padding: 2px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 5px;
+  text-decoration: none;
+  color: black;
+  color: white;
+}
+
+.btn-update {
+  background-color: skyblue;
+  font-weight: 600;
+}
+
+.btn-delete {
+  background-color: #ed3588;
+  font-weight: 600;
+}
+
+
+
+.tab-title{
+  background: #b2d8f7;
+}
+
+
+.wrapper {
+  max-width: 1280px;
+  margin:0 auto; /* 置中 */
+  padding: 0px 12px;
+}
+
+.banner {
+  position: relative;
+  height: 450px;
+  background: url(../home_img/banner.png) center/cover no-repeat; 
+}
+
+
+.login__bg {
+  background: url(../images/games-bn.jpg) center/cover no-repeat;
+  position: relative;
+  
+}
+
+.banner::after {
+  content: '';
+  position: absolute;
+  background:rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.banner h1 {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  color: white;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 60px;
+  font-weight: bold;
+}
+
+h2 {
+  margin: 0;
+}
+
+
+.section__title {
+  display: inline-block;
+  font-size: 36px;
+  border-left: solid 15px #a3dea2;
+  padding-left: 16px;
+  margin-bottom: 36px;
+}
+
+.section__desc {
+  font-size: 16px;
+  line-height: 2em;
+  margin: 0px 0px 68px 0px;
+}
+
+.botton {
+  padding: 60px 80px;
+  font-size: 36px;
+  color: #3e613d; /*字體顏色*/
+  display: inline-block;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+
+.btn-order {
+  background:#a8e8e1 ;
+}
+
+.btn-query {
+  margin-left: 23px;
+  background:#f9f9b5 ;       
+}
+
+.section__images {
+  display: flex;
+}
+
+.section__images div {
+  width: 25%
+}
+
+.section__images img {
+  width: 100%
+}
+
+
+
+
+.section__comments {
+  display: flex;
+  margin-top: 72px;
+}
+
+
+
+
+.comment {   
+  border: solid 1px #c7e5ec;
+  border-radius: 5px;
+  box-shadow: -1.4px -1.4px 4px 0 #c7e5ec;    
+  height: 200px;
+  padding: 16px;
+  position: relative;
+  font-size: 16px;
+  width: 30%;
+  color: #000000; 
+  text-align: center;
+}
+
+.comment +  .comment {
+  margin-left: 16px;
+  line-height: 1.5em;       
+}
+
+
+
+.comment__avatar {
+  width: 105px;
+  height: 105px;
+}
+
+.comment__avatar img { 
+  width: 100%;
+  height: 100%;
+}
+
+.comment__author {
+  display: inline-block;
+  position: absolute;
+  top: 18px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.comment__author p{
+  margin-top: 5px;
+  line-height: 18px;
+}
+
+.comment__content {
+  position: relative;
+  top: 40%;
+}
+
+
+
+
+
+
+
+/* title左邊名稱選單 */
+.navbar__site-name {
+  color: #489846;
+  font-size: 36px;
+}
+
+.navbar__site-name a{
+  color: #489846;
+  font-size: 36px;
+  text-decoration: none;
+  font-style: italic;
+}
+
+
+
+
+
+
+
+.section-lottery {
+  position: relative;
+  height: 800px;
+  background: url(../images/games-bn.jpg) center/cover no-repeat;
+
+}
+
+.section-lottery.first-prize {
+  background-image: url(../lottery_bg/bg.jpg);
+}
+
+.section-lottery.second-prize {
+  background-image: url(../lottery_bg/phone.jpg);
+}
+
+.section-lottery.third-prize {
+  background-image: url(../lottery_bg/tv.jpg);
+}
+
+.section-lottery.none-prize {
+  background: black;
+  color: white;
+}
+
+.section-lottery::after {
+  content: '';
+  position: absolute;
+  background: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+
+
+
+
+
+
+.lottery-result {
+  max-width: 800px;
+  position: relative;
+  color: #292222;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  /* padding: 40px 40px 24px 20px;
+        border-radius: 16px;
+        color:#322929; */
+}
+
+
+.lottery-result__title {
+  margin-bottom: 48px;
+  font-size: 36px;
+}
+
+.lottery-result__btn {
+  max-width: 330px;
+  text-align: center;
+  background-color: #e62a45;
+  padding: 16px 0px;
+  border-radius: 8px;
+  margin: 0 auto;
+  /*對於這種一行沒有滿又要置中的時候使用 */
+  color: white;
+}
+
+.lottery-info {
+  max-width: 500px;
+  background: white;
+  position: relative;
+  margin: 0;
+  color: white;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);   
+  text-align: center;
+  padding: 40px 40px 24px 20px;
+  border-radius: 16px;
+  color:#322929;
+}
+
+/*標題*/
+.lottery-info__title {
+  color: #5ec1b6;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+
+/*中間內文區塊*/
+.lottery-info__desc {
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+  font-size: 16px;
+}
+
+.lottery-info__desc-title {
+  font-weight: bold;
+  font-size: 18px;
+  width: 90px;
+}
+
+.lottery-info__desc-content {
+  flex: 1;
+  /*把這行剩下的空間給他*/
+  text-align: left;
+  margin-left: 12px;
+  line-height: 1.5em;
+}
+
+.lottery-info__btn {
+  width: 80%;
+  text-align: center;
+  background-color: #e62a45;
+  padding: 16px 0px;
+  border-radius: 8px;
+  margin: 0 auto;
+  /*對於這種一行沒有滿又要置中的時候使用 */
+  color: white;
+}
+
+.lottery-info__btn a {
+  display: block;
+  text-decoration: none;
+  color: white;
+}
+
+.container {
+  min-height: calc(100vh - 342px);
+
+}
+
+.section {
+  text-align: center;
+  margin-top: 80px;
+  min-height: calc(100vh - 374px);
+}
+
+/* .section__title {
+  color: #35564b;
+  font-size: 36px;
+  margin-bottom: 18px;
+} */
+
+/* title右邊選單 */
+.navbar__list {
+  list-style: none; /* 取消ul樣式符號 */
+  margin: 0; /* 重設ul邊界與留白為零 */
+  padding: 0;
+  display: flex;
+  font-size: 18px;
+}
+
+/* title右邊選單 的每一個li */
+.navbar__list li {
+  margin-left: 12px;
+  border-radius: 8px;  
+  transition: background 0.1s;
+  position: relative; /*以下是新的CSS*/
+  white-space: nowrap;
+  list-style: none;
+  display:block;
+}
+
+.navbar__list li a {
+  display: block;
+  text-decoration: none;
+  color: black;
+  padding: 12px 24px;
+}
+
+
+
+/*選單樣式*/
+.navbar__list li:hover {
+  background: #ff7286;
+}
+
+.navbar__list li:hover a {
+  color:black;
+}
+
+.navbar__list li:hover a {
+  color: white;
+}
+
+
+
+/* new */
+.dropdown__nav li.active, .dropdown__nav li:hover {
+  background: skyblue;
+  border-radius: 8px;
+}
+
+
+.dropdown__nav li a {
+  text-align:center;
+}
+
+.dropdown__nav li{
+  width: 117px;
+}
+
+/* 第二層選單 */
+.dropdown__nav {
+  position: absolute;
+  display: block;
+  margin: 0;
+  padding: 0;
+  top: 44px;
+  left: -11px;
+  z-index: 99;
+  border-radius: 8px; 
+  visibility: hidden;
+}
+
+
+
+.navbar__list li:hover ul {
+	visibility:visible;	/* 觸動第一層時，顯示第二層 */
+}
+/* style */
+
+
+
+
+
+
+.footer__bottom {
+  background: #35564b;
+  padding: 12px;
+  text-align: center;
+  color: white;
+  font-size: 16px;
+}
+
+.footer__top {
+  background: #e8efee;
+  padding: 32px;
+  color: #484848;
+}
+
+.footer__top .wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__info {
+  margin-right: 0;
+  margin-top: 16px;
+}
+
+.footer__info div+div {
+  margin-top: 10px;
+}
+
+.footer__site {
+  font-size: 36px;
+  color: #489846;
+  font-style: italic;
+}
+
+/* 手機板768大小 */
+@media(max-width: 768px) {
+  .navbar .wrapper {
+    height: 108px;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0px;
+  }
+
+  .navbar__site-name {
+    margin-top: 10px;
+  }
+
+  .navbar__list {
+    display: flex;
+    width: 100%;
+  }
+
+  .navbar__list li {
+    flex: 1;
+    margin-left: 0;
+    border-radius: 0;
+    text-align: center;
+  }
+
+  .btn-query {
+    margin-left: 0px;
+    margin-top: 16px;
+  }
+
+  .section__images {
+    flex-direction: column;
+  }
+
+  .section__images div {
+    width: 100%;
+  }
+
+  .footer__top .wrapper {
+    flex-direction: column-reverse;
+  }
+
+  .lottery-info {
+    transform: none;
+    top: 0;
+    left: 0;
+    border-radius: 0;
+  }
+
+}
+
+.hide {
+  display: none;
+}
+
+table {
+  font-size:20px;
+  border: solid 1px #c7e5ec;
+  border-collapse: collapse;
+  margin: 0 auto;
+}
+
+td, th {
+  border: solid 1px #c7e5ec;
+  color: #404060;
+  padding: 4px;
+}
+
+td > a {
+  display: block;
+}
+
+td > div > input {
+  margin-bottom: 5px;
+}
+
+/*登入區塊*/
+.login__body {
+  width:330px;
+  text-align: center;
+  padding: 24px 0px 24px 0px;
+  border: 1px solid #35564b  ;
+  border-radius: 8px;
+  background-color:  aliceblue;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.form-group {
+  margin-bottom: 10px;
+}
+
+.font-label {
+  font-size: 18px;
+  color: black;
+}
+
+.form-control {
+  font-weight: 400;
+  line-height: 1.5;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+.login__title {
+  margin: 10px 0;
+  padding: 0px 10px;
+}
+
+.login__header {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: normal;
+  text-align: center;
+  color: #5ec1b6;
+  padding: 20px 0;
+}
+
+
+.btn-primary {
+  border: 1px solid #35564b  ;
+  border-radius: 8px;
+  padding: 6px 16px;
+  background-color:  rgb(252, 240, 227);
+  margin-top: 4px;
+  margin-bottom: 16px;
+}
+
+.btn-primary:hover {
+  background: rgb(247, 232, 216);
+}
+
+/* 抽獎結果 */
+.lottery-result__bg {
+  height: 767px;
+  position: relative;
+}
+.lottery-result__body {
+  position: absolute;
+  border-radius: 16px;
+  width: 90%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 40px 0;
+  background: #ffffffc7;
+}
+.lottery-result__title {
+  font-size: 44px;
+  font-weight: bold;
+  text-align: center;
+  font-family: MicrosoftJhengHei;
+}
+.lottery-result__desc {
+  text-align: center;
+  font-family: MicrosoftJhengHei;
+}
+.lottery__btn {
+  text-decoration: none;
+  text-align: center;
+  border-radius: 8px;
+  background: #e62a45;
+  font-size: 20px;
+  cursor: pointer;
+  height: 55px;
+  color: white;
+  position: relative;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%);
+  border: none;
+  line-height: 55px;
+}
+
+.lottery__btn-prize {
+  width: 10%;
+}
+
+/*問與答*/
+.section__content {
+  width: 42%;
+  margin: 0 auto;
+  margin-bottom: 41px;
+}
+.section__question {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  padding-top: 29px;
+  padding-bottom: 24px;
+}
+.section__Q-And-A {
+  border-bottom: 1px solid #a6e2c0;
+  padding-bottom: 4px;
+}
+.section__ques-list {
+  color: #70b282;
+  font-size: 24px;
+  padding: 0 50px 0 17px;
+  width: 35px;
+}
+.section__ques-desc {
+  font-size: 18px;
+  font-weight: 800;
+  /*position: relative;*/
+}
+.section__answer {
+  font-size: 16px;
+  letter-spacing: 0.14px;
+  /*position: absolute;*/
+  width: 90%;
+  padding-bottom: 6px;
+  padding-left: 68px;
+  text-align: left;
+  line-height: 27px;
+  font-weight: 600;
+}
+
+.fold {
+  display: none;
+}
+
+
+.section__answer ul li {
+  padding-bottom: 32px;
+  margin: 0;
+}
+
+.section__answer ul li:last-child {
+  padding-bottom: 0px;
+  margin: 0;
+}
+
+.ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.back-stage__URL {
+  max-width: 75px;
+}
+
+
+
+
+
+

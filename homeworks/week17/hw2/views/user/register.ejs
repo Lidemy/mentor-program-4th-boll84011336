@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<%- include('../template/header') %>
+</head>
+
+<body>
+	<%- include('../template/navbar') %>
+	
+			<div class='login__bg'>
+
+				<div class="container">
+					<% if (errorMessage && errorMessage.length> 0) { %>
+						<div class="alert alert-danger" role="alert">
+							<%= errorMessage %>
+						</div>
+						<% } %>
+
+					
+							<div class="login__body">
+								<form method="POST" action="/register">
+									<div class="login__header">
+										<h2>註冊</h2>
+									</div>
+									<div class="form-group">
+										<label class="font-label">username</label>
+										<input class="form-control" name="username">
+									</div>
+
+									<div class="form-group">
+										<label class="font-label">nickname</label>
+										<input class="form-control" name="nickname">
+									</div>
+
+									<div class="form-group">
+										<label class="font-label">password</label>
+										<input class="form-control" type="password" name="password">
+									</div>
+									
+									<button type="submit" class="btn-primary">register</button>
+								</form>
+							</div>
+
+				</div>
+				
+			</div>
+		
+
+		<%- include('../template/footer') %>
+</body>
+
+
+</html>

@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<%- include('template/header') %>
+</head>
+
+<body>
+	<%- include('template/navbar') %>
+		<section class="section">
+			<h2 class='section__title'>抽獎更新</h2>
+			<table>
+				<tr class="tab-title">
+					<th>順序</th>
+					<th>獎項</th>
+					<th>品名</th>
+					<th>描述</th>
+					<th>照片</th>
+					<th>數量</th>
+					<th>機率(%)</th>
+					<th>狀態</th>
+					<th>編輯</th>
+				</tr>
+				<% for (let i=0; i < prizes.length ; i++) { %>
+					<!-- 如果網址的ID 不是ID 就不修改 -->
+					<% if (id !=parseInt(prizes[i].id)) { %>
+						<tr>
+							<td>
+								<%= prizes[i].backstagePrizeOrder%>
+							</td>
+							<td>
+								<%= prizes[i].prizeItem%>
+							</td>
+							<td>
+								<%= prizes[i].prizeName%>
+							</td>
+							<td>
+								<%= prizes[i].prizeDesc%>
+							</td>
+							<td class='ellipsis back-stage__URL'>
+								<img src="<%= prizes[i].imageUrl%>" style="width:200px; height:auto;" />
+							</td>
+							<td>
+								<%= prizes[i].prizesNumber%>
+							</td>
+							<td>
+								<%= prizes[i].prizeProbability%> %
+							</td>
+							<td>
+								<% if (prizes[i].isDelete==1) { %>
+									上架
+									<% } else { %>
+										下架
+										<% } %>
+							</td>
+							<td>
+								<div class="btn-edit">
+									<a href='/update-lottery/<%= prizes[i].id%>' class='btn-update'>編輯</a>
+								</div>
+								<div class="btn-edit">
+									<a href='/delete-lottery/<%= prizes[i].id%>' class='btn-delete'>刪除</a>
+								</div>
+							</td>
+						</tr>
+						<% } else { %>
+							<tr>
+								<form method='post' action='/update-lottery/<%= prizes[i].id %>'>
+									<td>
+										<input type='number' min='0' max='100' size='2' value="<%= prizes[i].backstagePrizeOrder%>"
+											name='backstagePrizeOrder' placeholder='n+1'></input>
+									</td>
+									<td>
+										<input type='text' size='5' name='prizeItem' value="<%= prizes[i].prizeItem%>"
+											placeholder='n 獎'></input>
+									</td>
+									<td>
+										<div><input type='text' size='20' name='prizeName' value="<%= prizes[i].prizeName%>"
+												placeholder='品名'></input></div>
+									</td>
+									<td>
+										<div><input type='text' size='20' name='prizeDesc' value="<%= prizes[i].prizeDesc%>"
+												placeholder='敘述'></input></div>
+									</td>
+									<td>
+										<input type='text' size='15' name='imageUrl' value="<%= prizes[i].imageUrl%>"
+											placeholder="http://www.example.com"></input>
+									</td>
+									<td>
+										<input type='number' min='0' max='100' size='2' value="<%= prizes[i].prizesNumber%>"
+											name='prizesNumber' placeholder='幾'></input> 位
+									</td>
+									<td>
+										<input type='number' min='0' max='100' size='2' value="<%= prizes[i].prizeProbability%>"
+											name='prizeProbability' placeholder='9'></input> %
+									</td>
+									<td>
+										<% if (prizes[i].isDelete==1) { %>
+											<% if (prizes[i].backstagePrizeOrder==0) { %>
+												-
+												<% } else { %>
+													上架
+													<% } %>
+														<% } else { %>
+															下架
+															<% } %>
+									</td>
+									<td>
+										<button type='submit' class='back-stage__btn'>儲存</button>
+										<a href='/backstage' class='back-stage__btn'>取消</a>
+									</td>
+								</form>
+							</tr>
+							<% } %>
+				<% } %>
+
+			</table>
+
+		</section>
+		<%- include('template/footer') %>
+</body>
+
+</html>

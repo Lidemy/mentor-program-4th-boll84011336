@@ -1,0 +1,20 @@
+<!doctype html>
+<head>
+	<%- include('template/header') %>
+</head>
+<html>
+
+  <%- include('template/navbar') %>
+  <div class="container">
+      <form method="POST" action="/update_articles/<%= article.id %>">
+        <div class="form-group">
+          <label class="mt-2">編輯標題</label>         
+          <textarea name="title" class="form-control"><%= article.title %></textarea>
+          <label class="mt-2">編輯文章</label>
+          <textarea rows=30 name="content" class="form-control"><%= article.content %></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+  </div>
+
+</html>

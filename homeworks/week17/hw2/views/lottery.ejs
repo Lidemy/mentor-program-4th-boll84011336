@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<%- include('template/header') %> 
+</head>
+<body>
+	<%- include('template/navbar') %> 
+		<section class="section-lottery">
+			<div class="lottery-info">
+				<div class="lottery-info__title">
+					2022 夏日輕盈特賞！ 抽獎活動辦法
+				</div>
+				<!-- 文字區塊 -->
+				<!-- 第一塊 -->
+				<div class="lottery-info__desc">
+					<div class="lottery-info__desc-title">活動期間：</div>
+					<div class="lottery-info__desc-content">2022/06/01~2022/07/01</div>
+				</div>
+				<!-- 第二塊 -->
+				<div class="lottery-info__desc">
+				<div class="lottery-info__desc-title">活動說明：</div>
+				<div class="lottery-info__desc-content">
+					今天老闆佛心來著決定給大家發獎勵，有看有機會，沒看只能幫QQ！
+					只要在店內消費滿1000000元即有機會獲得 - 頭獎日本東京來回雙人遊！</div>
+				</div>
+				<!-- 第三塊 -->
+				<div class="lottery-info__desc">
+				<div class="lottery-info__desc-title">獎品：</div>
+				<div class="lottery-info__desc-content">					
+						<% for (let i=0 ;i<prizes.length; i++) { %>
+							<% if (prizes[i].backstagePrizeOrder != 0) { %>
+								❤	<%= prizes[i].prizeItem%> <%= prizes[i].prizesNumber%> 名：<%= prizes[i].prizeName%>
+								(<%= prizes[i].prizeDesc%>) <br>
+							<% } %>  
+						<% } %>	 								
+					<!-- ❤ 頭獎一名：日本東京來回雙人遊(市價14990元)<br>
+					❤ 貳獎三名：90 吋電視一台(市價5990元)<br>
+					❤ 參獎十名：知名 YouTuber 簽名握手會入場券一張(市價1500元)<br> -->
+				</div>
+				</div>
+				<div class="lottery-info__btn"><a href='/lottery__result'>我要抽獎</a></div>
+			</div>
+			<!-- 抽獎結果頁面 -->
+			<div class="lottery-result hide">
+			<h2 class="lottery-result__title">恭喜你中頭獎了！日本東京來回雙人遊！</h2>
+			<div class="lottery-result__btn" onclick="javascript:window.location.reload()">我要抽獎</div>
+			</div>
+		</section>
+	<%- include('template/footer') %>
+</body>
+
+</html>
+

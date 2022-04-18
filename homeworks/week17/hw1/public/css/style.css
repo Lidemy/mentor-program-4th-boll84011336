@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+}
+
+.navbar > .title {
+	font-weight: 500; 
+	font-size:30px; 
+	font-style:oblique;
+	color:whitesmoke;
+
+}
+
+h4 {
+	color:red;
+}
+
+.container {
+	margin-top:30px;
+	min-height: calc(100vh - 70px);
+	margin-bottom:30px;
+}
+
+footer {	
+  padding: 10px 0px;
+  background-color: #323232;
+  font-size: 14px;
+  color: white;
+  text-align: center;
+}
+
+.card-body{
+  border: 1px solid;
+  border-color: wheat;
+}
+
+.card__title {
+  background: rgb(247, 240, 226);	
+  border: 1px solid;
+  border-color: wheat;
+}
+
+
+
+.card__content {
+  margin-top: 17px;
+  white-space: pre-line;
+  line-height: 1.5em;
+}
+
+.card__content-hide {
+  overflow: hidden; /* 內容超出寬度時隱藏超出部分的內容 */
+  text-overflow: ellipsis; /* 當物件內文字溢位時顯示省略標記(...) ；需與overflow:hidden;一起使用*/
+  display: -webkit-box;    /*將物件作為彈性伸縮盒子模型顯示*/
+  -webkit-line-clamp: 7;	 /*用來限制在一個塊元素顯示的文字的行數 */
+  -webkit-box-orient: vertical; /*設定或檢索伸縮盒物件的子元素的排列方式 */
+}
+
+.btn-read-more {
+  padding: 6px 10px;
+  border: solid 1px #737373;
+	border-radius: 20px;
+  color: #737373;
+  text-decoration: none;
+  transition: all 0.5s;
+}
+
+
+
+.btn-read-more:hover {
+  background: rgb(101, 101, 101);
+  color: #fff;
+}
+
+.info {
+	margin-top: 48px;
+	display: flex;
+	align-items:center;
+	justify-content: space-between;
+}
+
+.card-link {
+	color:green
+}
+
