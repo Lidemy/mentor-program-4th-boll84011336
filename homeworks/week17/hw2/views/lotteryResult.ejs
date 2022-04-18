@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<%- include('template/header') %> 
+</head>
+<body>
+	<%- include('template/navbar') %> 
+	<section class='section__lottery'>
+		<div class="lottery-result__bg">
+			<!-- <img src="../lottery_bg/ps3.jpg"> -->
+			<div class="lottery-result__body">				
+				<h2 class="lottery-result__title"><span class="phone__style"><%= result.prizeItem%></span></h2>
+				<p class='lottery-result__desc phone__style'><%= result.prizeName %> ( <%= result.prizeDesc%> ) </p>			
+				<a href='/lottery'><input type='button' class='lottery__btn lottery__btn-prize' value='我要抽獎'></input></a>
+   		</div>
+		</div>
+	</section>
+	<%- include('template/footer')%>
+	<script>
+			document.querySelector('.lottery-result__bg').style = 'background: url(<%= result.imageUrl%>) center/cover no-repeat;'
+	</script>
+</body>
+
+</html>
+

@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<%- include('template/header') %>
+</head>
+
+<body>
+	<%- include('template/navbar') %>
+		<section class="section">
+			<h2 class='section__title'>抽獎更新</h2>
+			<table>
+				<tr class="tab-title">
+					<th>順序</th>
+					<th>獎項</th>
+					<th>品名</th>
+					<th>描述</th>
+					<th>照片</th>
+					<th>數量</th>
+					<th>機率(%)</th>
+					<th>狀態</th>
+					<th>編輯</th>
+				</tr>
+				<% for (let i=0; i < prizes.length ; i++) { %>
+		
+					<tr>
+							<td>
+								<%= prizes[i].backstagePrizeOrder%>
+							</td>
+							<td>
+								<%= prizes[i].prizeItem%>
+							</td>
+							<td>
+								<%= prizes[i].prizeName%>
+							</td>
+							<td>
+								<%= prizes[i].prizeDesc%>
+							</td>
+							<td class='ellipsis back-stage__URL'>
+								<img src="<%= prizes[i].imageUrl%>" style="width:200px; height:auto;"/>
+							</td>
+							<td>
+								<%= prizes[i].prizesNumber%>
+							</td>
+							<td>
+								<%= prizes[i].prizeProbability%> %
+							</td>
+							<td>
+								<% if (prizes[i].isDelete == 1) { %>
+									<% if (prizes[i].backstagePrizeOrder == 0) { %> 
+										-
+									<% } else { %>									
+									上架
+									<% } %>  
+								<% } else { %> 
+									下架
+								<% } %> 
+              </td>
+							<td>							
+								<div class='btn-edit'>
+									<a href='/update-lottery/<%= prizes[i].id%>' class='btn-update'>編輯</a>
+								</div>
+								<div class='btn-edit'>
+									<a href='/delete-lottery/<%= prizes[i].id%>'class='btn-delete'>刪除</a>
+								</div>						
+							</td>
+					</tr>
+					<% } %>
+						<tr>
+							<form method='post' action='/backstage'>
+								<td>
+									<input type='number' min='0' max='100' size='2' name='backstagePrizeOrder' placeholder='n+1'></input>
+								</td>
+								<td>
+									<input type='text' size='5' name='prizeItem' placeholder='n 獎'></input>
+								</td>
+								<td>
+									<div><input type='text' size='20' name='prizeName' placeholder='品名'></input></div>
+								</td>
+								<td>
+									<div><input type='text' size='20' name='prizeDesc' placeholder='敘述'></input></div>
+								</td>
+								<td>
+									<input type='url' size='15' name='imageUrl' placeholder="http://www.example.com"></input>
+								</td>
+								<td>
+									<input type='number' min='0' max='100' size='2' name='prizesNumber' placeholder='幾'></input> 位
+								</td>
+								<td>
+									<input type='number' min='0' max='100' size='2' name='prizeProbability' placeholder='9'></input> %
+								</td>
+								<td>-</td>
+								<td>
+									<button type='submit' class='back-stage__btn'>新增</button>
+								</td>
+
+
+							</form>
+						</tr>
+
+			</table>
+
+		</section>
+		<%- include('template/footer') %>
+</body>
+
+</html>

@@ -1,0 +1,24 @@
+./node_modules/.bin/sequelize model:generate --name User --attributes username:string,password:string,nickname:string
+
+./node_modules/.bin/sequelize model:generate --name Prizes 
+--attributes prizeItem:string,prizesNumber:integer,prizeName:string,prizeDesc:string,imageUrl:string,prizeAmount:integer,prizeProbability:integer,backstagePrizeOrder:integer,isDelete:integer
+
+把資料表真的建立起來
+./node_modules/.bin/sequelize db:migrate
+
+./node_modules/.bin/sequelize db:migrate:undo
+
+要建立關聯除了寫好關聯以外，還要去migrate的資料夾建立一個關聯
+
+./node_modules/.bin/sequelize model:generate --name Articles --attributes title:string,content:text
+
+
+prizeItem:string, 獎品項目( 一獎二獎
+prizesNumber:integer, (獎品數量
+prizeName:string,(獎品名稱
+prizeDesc:string,(獎品說明
+imageUrl:string,(圖片
+prizeAmount:integer,(獎品金額
+prizeProbability:integer,(獎品概率
+backstagePrizeOrder:integer,(後端獎品順序
+isDelete:integer(是否刪除

@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<%- include('../template/header') %> 
+</head>
+<body>
+	<%- include('../template/navbar') %> 
+	<div class="container">
+			<div class="card mt-2 w-100" style="width: 18rem;">
+				<div class="card-header d-flex justify-content-between">
+					<h3><%= article.title %></h3>
+					<span>作者：<%= article.User.nickname %></span>
+				</div>
+				<div class="card-body">
+					<p class="card-text card__content"><%= article.content %></p>
+				</div>
+			</div>			 
+	</div>
+	
+	<%- include('../template/footer') %>
+</body>
+
+</html>
+
